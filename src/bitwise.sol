@@ -5,7 +5,7 @@ contract Uint256Bitmap {
     uint256 private bitmap;
 
     function storeByte(uint8 value, uint8 index) external {
-        require(index < 32, "Index out of range");
+        require(index < 32, "Data out of bound");
 
         uint256 shiftAmount = index * 8;
         uint256 mask = ~(uint256(0xFF) << shiftAmount);
@@ -14,7 +14,7 @@ contract Uint256Bitmap {
     }
 
     function getByte(uint8 index) external view returns (uint8) {
-        require(index < 32, "Index out of range");
+        require(index < 32, "Data out of bound");
 
         uint256 shiftAmount = index * 8;
         return uint8((bitmap >> shiftAmount) & 0xFF);
